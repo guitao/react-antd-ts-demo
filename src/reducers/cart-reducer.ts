@@ -1,5 +1,6 @@
 import {
-    ADD_TO_CART
+    ADD_TO_CART,
+    DELETE_ROW
 } from '../actions/cart-actions';
 
 const initialState = {
@@ -43,6 +44,15 @@ export default function (state = initialState, action: any) {
             return {
                 ...state,
                 cart: [...state.cart, action.payload]
+            }
+        }
+
+        case DELETE_ROW: {
+            console.log("===action====", action)
+            let newPosts = state.posts.filter(item => item.id !== action.id)
+            return {
+                ...state,
+                posts: newPosts
             }
         }
 
