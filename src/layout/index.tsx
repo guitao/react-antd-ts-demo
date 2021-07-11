@@ -1,16 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import { Layout, Menu } from 'antd';
+import { Layout } from 'antd';
 import { Route, Switch, Redirect, HashRouter, Link, BrowserRouter as Router, } from 'react-router-dom';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
 } from '@ant-design/icons';
 
+import SliderBar from './sliderBar'
 import Home from '../pages/home'
 import Demo from '../pages/demo'
 
@@ -32,15 +29,8 @@ class Container extends React.Component {
             <Layout style={{ height: '100vh' }}>
                 <Router>
                     <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-                        <div className="logo" />
-                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                            <Menu.Item key="1" icon={<UserOutlined />}>
-                                <Link to='/home'>主页</Link>
-                            </Menu.Item>
-                            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                                <Link to='/demo'>Demo</Link>
-                            </Menu.Item>
-                        </Menu>
+                        <div className="logo">数据中心</div>
+                        <SliderBar />
                     </Sider>
                     <Layout className="site-layout">
                         <Header className="site-layout-background" style={{ padding: 0 }}>
@@ -55,6 +45,7 @@ class Container extends React.Component {
                                 margin: '24px 16px',
                                 padding: 24,
                                 minHeight: 280,
+                                overflowY: 'scroll'
                             }}
                         >
                             <Switch>
