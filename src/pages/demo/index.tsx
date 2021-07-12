@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Table } from 'antd'
+import { Table, Button } from 'antd'
 import {
-    DELETE_ROW
+    DELETE_ROW,
+    ADD_TO_CART
 } from '../../actions/cart-actions';
 
 
@@ -42,10 +43,22 @@ const Demo = (props: any) => {
         props.deletePost(id)
     }
 
+    const addRow = () => {
+        let tempObj: {userId: number, id: number, title: string, body: string} = {
+            userId: 10001,
+            id: Math.floor(Math.random()*100 + 1),
+            title: 'add-test',
+            body: '111111111111111111111111111111111111111111'
+        }
+        props.addPost(tempObj)
+    }
+
     return (
         <div>
             {console.log("===props=====", props)}
-            <h3>Redux使用：</h3>
+            <h3>Redux使用：
+                <Button onClick={() => addRow()} type='primary'>新增</Button>
+            </h3>
             <Table dataSource={props.posts} columns={columns} />
         </div>
     )
@@ -59,7 +72,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        deletePost: (id: number) => dispatch({ type: DELETE_ROW, id: id })
+        deletePost: (id: number) => dispatch({ type: DELETE_ROW, id: id }),
+        addPost: (payload: {userId: number, id: number, title: string, body: string}) => dispatch({ type: ADD_TO_CART, payload})
     }
 }
 

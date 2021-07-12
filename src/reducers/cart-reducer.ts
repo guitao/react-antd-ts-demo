@@ -41,9 +41,10 @@ const initialState = {
 export default function (state = initialState, action: any) {
     switch (action.type) {
         case ADD_TO_CART: {
+            console.log(action)
             return {
                 ...state,
-                cart: [...state.cart, action.payload]
+                posts: [...state.posts, action.payload]
             }
         }
 
