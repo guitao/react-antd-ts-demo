@@ -10,7 +10,7 @@
 
 > [Redux](https://www.redux.org.cn/)：Redux是JavaScript应用的状态容器，提供可预测的状态管理。（类似于Vuex）
 > 应用中所有的state都以一个对象树的形式储存在一个单一的store中。 惟一改变state的办法是触发action，一个描述发生什么的对象。为了描述action如何改变state树，你需要编写reducers。
-> ```
+ ``` javascript
 import { createStore } from 'redux';
 
 /**
