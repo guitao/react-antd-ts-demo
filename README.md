@@ -8,7 +8,7 @@
 > 2. useEffect对应的是生命周期函数，可以看作react中componentDidMount，componentDidUpdate 和 componentWillUnmount这三个生命周期函数的组合。
 > 3. useEffect其中包含了vue中watch监听功能。
 
-> [Redux](https://www.redux.org.cn/)：Redux是JavaScript应用的状态容器，提供可预测的状态管理。（类似于Vuex）
+> [Redux](https://cn.redux.js.org/)：Redux是JavaScript应用的状态容器，提供可预测的状态管理。（类似于Vuex）
 > 应用中所有的state都以一个对象树的形式储存在一个单一的store中。 惟一改变state的办法是触发action，一个描述发生什么的对象。为了描述action如何改变state树，你需要编写reducers。
  ``` javascript
 import { createStore } from 'redux';
