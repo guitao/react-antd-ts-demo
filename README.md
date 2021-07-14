@@ -10,6 +10,7 @@
 
 > [Redux](https://cn.redux.js.org/)：Redux是JavaScript应用的状态容器，提供可预测的状态管理。（类似于Vuex）
 > 应用中所有的state都以一个对象树的形式储存在一个单一的store中。 惟一改变state的办法是触发action，一个描述发生什么的对象。为了描述action如何改变state树，你需要编写reducers。
+> 
 > Redux的核心由三部分组成：Store, Action, Reducer。
 > 1. **Store** : 是个对象，贯穿你整个应用的数据都应该存储在这里。
 > 2. **Action**： 是个对象，必须包含type这个属性，reducer将根据这个属性值来对store进行相应的处理。除此之外的属性，就是进行这个操作需要的数据。
