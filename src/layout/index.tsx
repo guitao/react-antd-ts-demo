@@ -10,6 +10,7 @@ import {
 import SliderBar from './sliderBar'
 import Home from '../pages/home'
 import Demo from '../pages/demo'
+import DemoDetail from '../pages/demo/detail'
 
 const { Header, Sider, Content } = Layout;
 
@@ -52,6 +53,8 @@ class Container extends React.Component {
                                 <Route exact path="/" component={Home} />
                                 <Route exact path="/home" component={Home} />
                                 <Route path="/demo" component={Demo} />
+                                <Route path="/detail" component={DemoDetail} />
+
                             </Switch>
                         </Content>
                     </Layout>

@@ -40,9 +40,10 @@ export default class SliderBar extends Component {
                     {
                         slideBarConfig.map((item, index) => {
                             return (
-                                <Menu.Item key={index} icon={<UserOutlined />}>
-                                    <Link onClick={() => this.getSelectKey()} to={item.url}>{item.name}</Link>
-                                </Menu.Item>
+                                item.hideInMenu ? '' :
+                                    <Menu.Item key={index} icon={<UserOutlined />}>
+                                        <Link onClick={() => this.getSelectKey()} to={item.url}>{item.name}</Link>
+                                    </Menu.Item>
                             )
                         })
                     }

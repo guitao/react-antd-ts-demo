@@ -13,6 +13,8 @@ const Demo = (props: any) => {
         title: string,
         dataIndex: string,
         key: string,
+        align?: 'left' | 'right' | 'center',
+        width?: number,
         render?: (val: any, record: any) => any
     }[] = [
             {
@@ -34,7 +36,18 @@ const Demo = (props: any) => {
                 title: 'Action',
                 dataIndex: '',
                 key: 'x',
-                render: (val, record) => <a onClick={() => deleteRow(record.id)}>Delete</a>,
+                align: 'center',
+                width: 180,
+                render: (val, record) => (
+                    <div>
+                        <Button onClick={() => props.history.push({pathname: '/detail', state: record})} type="link">
+                            详情
+                        </Button>
+                        <Button onClick={() => deleteRow(record.id)} type="link" danger>
+                            删除
+                        </Button>
+                    </div>
+                ),
             }
         ]
 
@@ -44,9 +57,9 @@ const Demo = (props: any) => {
     }
 
     const addRow = () => {
-        let tempObj: {userId: number, id: number, title: string, body: string} = {
+        let tempObj: { userId: number, id: number, title: string, body: string } = {
             userId: 10001,
-            id: Math.floor(Math.random()*100 + 1),
+            id: Math.floor(Math.random() * 100 + 1),
             title: 'add-test',
             body: '111111111111111111111111111111111111111111'
         }
@@ -55,11 +68,10 @@ const Demo = (props: any) => {
 
     return (
         <div>
-            {console.log("===props=====", props)}
             <h3>Redux使用：
                 <Button onClick={() => addRow()} type='primary'>新增</Button>
             </h3>
-            <Table dataSource={props.posts} columns={columns} />
+            <Table dataSource={props.posts} columns={columns} rowKey="id"/>
         </div>
     )
 }
@@ -73,7 +85,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         deletePost: (id: number) => dispatch({ type: DELETE_ROW, id: id }),
-        addPost: (payload: {userId: number, id: number, title: string, body: string}) => dispatch({ type: ADD_TO_CART, payload})
+        addPost: (payload: { userId: number, id: number, title: string, body: string }) => dispatch({ type: ADD_TO_CART, payload })
     }
 }
 

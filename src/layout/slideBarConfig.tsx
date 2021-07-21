@@ -6,8 +6,9 @@ const slideBarConfig = [
     //         { name: "角色管理", url: "/system/roleManage" }
     //     ]
     // },
-    { name: "Hook使用", icon: "copy", url: "/home" },
-    { name: "Redux使用", icon: "inbox", url: "/demo" }
+    { name: "Hook使用", icon: "copy", url: "/home", hideInMenu: false },
+    { name: "Redux使用", icon: "inbox", url: "/demo", hideInMenu: false },
+    { name: "路由传参", icon: "inbox", url: "/demo/detail", hideInMenu: true }
 ];
 
 export default slideBarConfig;

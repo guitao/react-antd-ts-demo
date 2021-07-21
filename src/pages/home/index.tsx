@@ -35,7 +35,6 @@ const Home = () => {
             .then(res => res.json())
             .then(res => {
                 setLoading(false)
-                console.log("====res====", res)
                 setTableData(res)
             })
     }
@@ -43,14 +42,14 @@ const Home = () => {
     useEffect(() => {
         fetchList()
         return () => {
-
+            
         }
     }, [])
 
     return (
         <div>
             <h3>Hooks使用：</h3>
-            <Table loading={loading} dataSource={tableData} columns={columns} />
+            <Table loading={loading} dataSource={tableData} columns={columns} rowKey="id"/>
         </div>
     )
 }
