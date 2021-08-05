@@ -58,3 +58,6 @@ store.dispatch({ type: 'INCREMENT' });
 store.dispatch({ type: 'DECREMENT' });
 // 1
 ```
+
+> [React Router](https://github.com/react-guide/react-router-cn)传参方式：
+> 
