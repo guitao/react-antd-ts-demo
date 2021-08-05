@@ -60,13 +60,41 @@ store.dispatch({ type: 'DECREMENT' });
 ```
 
 > [React Router](https://github.com/react-guide/react-router-cn)传参方式：
-> 1. Params传参：
+> 1. params传参：
 ``` javascript
   // 1. 路由定义处：
   <Route path='/componmentUrl/:id ' component={componment}></Route>
+
   // 2. 路由跳转地方：
   // link标签跳转：
   <Link to={ `/sort/${id}` }  activeClassName='active'>XXXX</Link>
   // js跳转
   this.props.history.push(`/sort/${id}`)
+
+  // 3.组件页面接收
+  this.props.match.params.id
+```
+
+> 2. query传参：
+```javascript
+  // 跳转处
+  // 1.link标签跳转：
+  <Link to={{ path: '/componmentUrl', query: {id} }}  activeClassName='active'>XXXX</Link>
+  // js跳转
+  this.props.history.push({ path: '/componmentUrl', query: {id} })
+
+  // 2.组件页面接收
+  this.props.match.query.id
+```
+
+> 3. state传参(类似于query传参,但刷新后传的参数不会消失)：
+```javascript
+  // 跳转处
+  // 1.link标签跳转：
+  <Link to={{ path: '/componmentUrl', state: {id} }}  activeClassName='active'>XXXX</Link>
+  // js跳转
+  this.props.history.push({ path: '/componmentUrl', state: {id} })
+
+  // 2.组件页面接收
+  this.props.location.state.id
 ```
