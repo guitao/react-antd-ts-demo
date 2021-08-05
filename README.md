@@ -61,3 +61,12 @@ store.dispatch({ type: 'DECREMENT' });
 
 > [React Router](https://github.com/react-guide/react-router-cn)传参方式：
 > 1. Params传参：
+``` javascript
+  // 1. 路由定义处：
+  <Route path='/componmentUrl/:id ' component={componment}></Route>
+  // 2. 路由跳转地方：
+  // link标签跳转：
+  <Link to={ `/sort/${id}` }  activeClassName='active'>XXXX</Link>
+  // js跳转
+  this.props.history.push(`/sort/${id}`)
+```
