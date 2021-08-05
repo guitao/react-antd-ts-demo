@@ -60,4 +60,4 @@ store.dispatch({ type: 'DECREMENT' });
 ```
 
 > [React Router](https://github.com/react-guide/react-router-cn)传参方式：
-> 1.Params传参：
+> 1. Params传参：
