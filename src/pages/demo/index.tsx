@@ -6,50 +6,58 @@ import {
     ADD_TO_CART
 } from '../../actions/cart-actions';
 
+interface PostItem {
+    userId: number,
+    id: number,
+    title: string,
+    body: string
+}
+
+interface ColumnsProps {
+    title: string,
+    dataIndex: string,
+    key: string,
+    align?: 'left' | 'right' | 'center',
+    width?: number,
+    render?: (val: any, record: any) => any
+}
 
 
 const Demo = (props: any) => {
-    const columns: {
-        title: string,
-        dataIndex: string,
-        key: string,
-        align?: 'left' | 'right' | 'center',
-        width?: number,
-        render?: (val: any, record: any) => any
-    }[] = [
-            {
-                title: 'ID',
-                dataIndex: 'id',
-                key: 'id',
-            },
-            {
-                title: '标题',
-                dataIndex: 'title',
-                key: 'title',
-            },
-            {
-                title: '内容',
-                dataIndex: 'body',
-                key: 'body'
-            },
-            {
-                title: 'Action',
-                dataIndex: '',
-                key: 'x',
-                align: 'center',
-                width: 180,
-                render: (val, record) => (
-                    <div>
-                        <Button onClick={() => props.history.push({pathname: '/detail', state: record})} type="link">
-                            详情
-                        </Button>
-                        <Button onClick={() => deleteRow(record.id)} type="link" danger>
-                            删除
-                        </Button>
-                    </div>
-                ),
-            }
-        ]
+    const columns: ColumnsProps[] = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+        },
+        {
+            title: '标题',
+            dataIndex: 'title',
+            key: 'title',
+        },
+        {
+            title: '内容',
+            dataIndex: 'body',
+            key: 'body'
+        },
+        {
+            title: 'Action',
+            dataIndex: '',
+            key: 'x',
+            align: 'center',
+            width: 180,
+            render: (val, record) => (
+                <div>
+                    <Button onClick={() => props.history.push({ pathname: '/detail', state: record })} type="link">
+                        详情
+                    </Button>
+                    <Button onClick={() => deleteRow(record.id)} type="link" danger>
+                        删除
+                    </Button>
+                </div>
+            ),
+        }
+    ]
 
     const deleteRow = (id: number) => {
         console.log("===id====", id)
@@ -71,7 +79,7 @@ const Demo = (props: any) => {
             <h3>Redux使用：
                 <Button onClick={() => addRow()} type='primary'>新增</Button>
             </h3>
-            <Table dataSource={props.posts} columns={columns} rowKey="id"/>
+            <Table dataSource={props.posts} columns={columns} rowKey="id" />
         </div>
     )
 }
@@ -85,7 +93,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         deletePost: (id: number) => dispatch({ type: DELETE_ROW, id: id }),
-        addPost: (payload: { userId: number, id: number, title: string, body: string }) => dispatch({ type: ADD_TO_CART, payload })
+        addPost: (payload: PostItem) => dispatch({ type: ADD_TO_CART, payload })
     }
 }
 
