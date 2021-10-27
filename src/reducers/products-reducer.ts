@@ -1,3 +1,3 @@
-export default function (state = [], action:any) {
-    return state;
+export default function productsReducer(state = [], action: any) {
+  return state;
 }

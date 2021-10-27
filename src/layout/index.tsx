@@ -8,9 +8,10 @@ import {
 } from '@ant-design/icons';
 
 import SliderBar from './sliderBar'
-import Home from '../pages/home'
-import Demo from '../pages/demo'
-import DemoDetail from '../pages/demo/detail'
+import Home from '../pages/reduxDemo'
+import Demo from '../pages/hookDemo'
+import DemoDetail from '../pages/hookDemo/detail'
+import ReduxSagaDemo from '../pages/reduxSagaDemo'
 
 const { Header, Sider, Content } = Layout;
 
@@ -30,7 +31,7 @@ class Container extends React.Component {
             <Layout style={{ height: '100vh' }}>
                 <Router>
                     <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-                        <div className="logo">数据中心</div>
+                        <div className="logo">Admin后台管理</div>
                         <SliderBar />
                     </Sider>
                     <Layout className="site-layout">
@@ -54,6 +55,7 @@ class Container extends React.Component {
                                 <Route exact path="/home" component={Home} />
                                 <Route path="/demo" component={Demo} />
                                 <Route path="/detail" component={DemoDetail} />
+                                <Route path="/redux_saga_demo" component={ReduxSagaDemo} />
 
                             </Switch>
                         </Content>
