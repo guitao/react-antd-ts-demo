@@ -15,10 +15,20 @@ app.get("/test", (req, res) => {
           "value|0-500": 10,
           "code1|10": /[a-z]/,
           "code2|10-100": 100,
-
         },
       ],
     })
+  );
+});
+
+
+app.post("/test", (req, res) => {
+  res.json(
+    {
+      code: '200',
+      msg: '成功',
+      data: []
+    }
   );
 });
 
