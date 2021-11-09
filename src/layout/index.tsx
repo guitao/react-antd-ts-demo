@@ -12,6 +12,7 @@ import Home from '../pages/reduxDemo'
 import Demo from '../pages/hookDemo'
 import DemoDetail from '../pages/hookDemo/detail'
 import ReduxSagaDemo from '../pages/reduxSagaDemo'
+import Test from '../pages/test'
 
 const { Header, Sider, Content } = Layout;
 
@@ -56,6 +57,7 @@ class Container extends React.Component {
                                 <Route path="/demo" component={Demo} />
                                 <Route path="/detail" component={DemoDetail} />
                                 <Route path="/redux_saga_demo" component={ReduxSagaDemo} />
+                                <Route path="/test" component={Test} />
 
                             </Switch>
                         </Content>
