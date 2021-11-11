@@ -3,7 +3,7 @@ import { publicIp } from './apiId'
 // import { LOGIN } from './apiURL'
 import { message } from 'antd'
 
-let hide = null
+let hide: any = null
 const instance = axios.create({    //创建axios实例，在这里可以设置请求的默认配置
     timeout: 10000, // 设置超时时间10s
     baseURL: publicIp   //根据自己配置的反向代理去设置不同环境的baeUrl
@@ -11,7 +11,7 @@ const instance = axios.create({    //创建axios实例，在这里可以设置�
 // 文档中的统一设置post请求头。下面会说到post请求的几种'Content-Type'
 instance.defaults.headers.post['Content-Type'] = 'application/json'
 
-let httpCode = {        //这里我简单列出一些常见的http状态码信息，可以自己去调整配置
+let httpCode: any = {        //这里我简单列出一些常见的http状态码信息，可以自己去调整配置
     400: '请求参数错误',
     401: '权限不足, 请重新登录',
     403: '服务器拒绝本次访问',
@@ -23,7 +23,7 @@ let httpCode = {        //这里我简单列出一些常见的http状态码信�
 }
 
 /** 添加请求拦截器 **/
-instance.interceptors.request.use(config => {
+instance.interceptors.request.use((config: any) => {
     config.headers['token'] = sessionStorage.getItem('token') || ''
     hide = message.loading({ content: 'Loading...', duration: 0 });
     // 在这里：可以根据业务需求可以在发送请求之前做些什么:例如我这个是导出文件的接口，因为返回的是二进制流，所以需要设置请求响应类型为blob，就可以在此处设置。
@@ -66,44 +66,27 @@ instance.interceptors.response.use(response => {
     }
 })
 
-// /* 统一封装get请求 */
-// export const get = (url, params, config = {}) => {
-//     return new Promise((resolve, reject) => {
-//         instance({
-//             method: 'get',
-//             url,
-//             params,
-//             ...config
-//         }).then(response => {
-//             resolve(response)
-//         }).catch(error => {
-//             reject(error)
-//         })
-//     })
-// }
-
-// /* 统一封装post请求  */
-// export const post = (url, data, config = {}) => {
-//     return new Promise((resolve, reject) => {
-//         instance({
-//             method: 'post',
-//             url,
-//             data,
-//             ...config
-//         }).then(response => {
-//             resolve(response)
-//         }).catch(error => {
-//             reject(error)
-//         })
-//     })
-// }
-
-
-/* 统一封装请求  */
-export const request = (url, data, method, config = {}) => {
+/* 统一封装get请求 */
+export const get = (url: string, params = {}, config = {}) => {
     return new Promise((resolve, reject) => {
         instance({
-            method: method,
+            method: 'get',
+            url,
+            params,
+            ...config
+        }).then(response => {
+            resolve(response)
+        }).catch(error => {
+            reject(error)
+        })
+    })
+}
+
+/* 统一封装post请求  */
+export const post = (url: string, data: any, config = {}) => {
+    return new Promise((resolve, reject) => {
+        instance({
+            method: 'post',
             url,
             data,
             ...config
@@ -114,3 +97,20 @@ export const request = (url, data, method, config = {}) => {
         })
     })
 }
+
+
+/* 统一封装请求  */
+// export const request = (method = 'GET', url, data, config = {}) => {
+//     return new Promise((resolve, reject) => {
+//         instance({
+//             method: method,
+//             url,
+//             data,
+//             ...config
+//         }).then(response => {
+//             resolve(response)
+//         }).catch(error => {
+//             reject(error)
+//         })
+//     })
+// }

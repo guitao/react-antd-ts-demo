@@ -11,7 +11,10 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "antd": "^4.16.6",
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.0",
     "concurrently": "^6.3.0",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "mockjs": "^1.1.0",
     "react": "^17.0.2",
@@ -23,7 +26,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "concurrently \"set PORT=3030 && react-scripts start\" \"nodemon mock/index.js\"",
+    "start": "set PORT=3030 && react-scripts start",
+    "mock": "nodemon mock/index.js",
+    "dev": "concurrently \"npm start\" \"npm run mock\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -1,11 +1,5 @@
-import React, { useReducer } from 'react'
-
-interface userIProp {
-    name: string,
-    team: string,
-    address: string,
-    age: number
-}
+import React, { useReducer, useEffect } from 'react'
+import { get } from '../../server/api'
 
 const userState = {
     name: 'mike',
@@ -37,6 +31,14 @@ const personalReducer = (prevState: any, action: any) => {
 const Test = () => {
     const [state, dispatch] = useReducer(personalReducer, userState)
 
+    useEffect(() => {
+        get('/test').then(res => {
+            console.log('====res=====', res)
+        })
+        return () => {
+
+        }
+    }, [])
 
     return (
         <div>
