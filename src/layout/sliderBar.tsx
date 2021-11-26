@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import {
-    UserOutlined,
-    VideoCameraOutlined,
+    UserOutlined
 } from '@ant-design/icons';
 import slideBarConfig from './slideBarConfig'
 
+const { SubMenu } = Menu;
 
 export default class SliderBar extends Component {
 
@@ -31,21 +31,46 @@ export default class SliderBar extends Component {
         })
     }
 
+    handleClick(key: string) {
+        console.log("====key====", key)
+    }
+
+    renderSubMenu(item: any) {
+        if (item.children.length > 0) {
+            return (
+                <SubMenu
+                    key={item.url}
+                    title={
+                        <span>
+                            <UserOutlined />
+                            <span>{item.name}</span>
+                        </span>
+                    }
+                >
+                    {item.children.map((e: any) => (
+                        <Menu.Item key={e.url}>
+                            <span>{e.name}</span>
+                        </Menu.Item>
+                    ))}
+                </SubMenu>
+            );
+        }
+        return (
+            item.hideInMenu ? '' :
+                <Menu.Item key={item.key} icon={<UserOutlined />}>
+                    <Link onClick={() => this.getSelectKey()} to={item.url}>{item.name}</Link>
+                </Menu.Item>
+        )
+    }
+
     render() {
         const { defaultSelectedKeys } = this.state
 
         return (
             <div>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={defaultSelectedKeys}>
+                <Menu onClick={({ key }) => this.handleClick(key)} theme="dark" mode="inline" defaultSelectedKeys={defaultSelectedKeys}>
                     {
-                        slideBarConfig.map((item, index) => {
-                            return (
-                                item.hideInMenu ? '' :
-                                    <Menu.Item key={index} icon={<UserOutlined />}>
-                                        <Link onClick={() => this.getSelectKey()} to={item.url}>{item.name}</Link>
-                                    </Menu.Item>
-                            )
-                        })
+                        slideBarConfig.map(this.renderSubMenu)
                     }
                 </Menu>
             </div>

@@ -43,7 +43,7 @@ instance.interceptors.request.use((config: any) => {
 /** 添加响应拦截器  **/
 instance.interceptors.response.use(response => {
     hide()
-    if (response.statusText === 'ok') {     // 响应结果里的statusText: ok是我与后台的约定，大家可以根据实际情况去做对应的判断
+    if (response.statusText === 'OK') {     // 响应结果里的statusText: ok是我与后台的约定，大家可以根据实际情况去做对应的判断
         return Promise.resolve(response.data)
     } else {
         message.error('响应超时')
@@ -83,7 +83,7 @@ export const get = (url: string, params = {}, config = {}) => {
 }
 
 /* 统一封装post请求  */
-export const post = (url: string, data: any, config = {}) => {
+export const post = (url: string, data?: any, config = {}) => {
     return new Promise((resolve, reject) => {
         instance({
             method: 'post',

@@ -1,5 +1,5 @@
-import React, { useReducer, useEffect } from 'react'
-import { get } from '../../server/api'
+import React, { useReducer, useEffect, useState, useRef } from 'react'
+import { post } from '../../server/api'
 
 const userState = {
     name: 'mike',
@@ -30,15 +30,26 @@ const personalReducer = (prevState: any, action: any) => {
 
 const Test = () => {
     const [state, dispatch] = useReducer(personalReducer, userState)
+    const [count, setCount] = useState(0)
+    const lastCount = useRef(count)
 
     useEffect(() => {
-        get('/test').then(res => {
+        post('/user/query', {
+            name: '111111'
+        }).then(res => {
             console.log('====res=====', res)
         })
         return () => {
 
         }
     }, [])
+
+    useEffect(() => {
+        lastCount.current = count
+        setTimeout(() => {
+            console.log(`You clicked ${lastCount.current} times`);
+        }, 3000);
+    });
 
     return (
         <div>
@@ -47,7 +58,9 @@ const Test = () => {
             <button onClick={() => dispatch({
                 type: 'updateName', name: '11111'
             })}>点击</button>
-        </div >
+
+            <button onClick={() => { setCount(count + 1) }}>+</button>
+        </div>
     )
 }
 
