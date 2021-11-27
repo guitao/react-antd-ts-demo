@@ -8,7 +8,7 @@ import slideBarConfig from './slideBarConfig'
 
 const { SubMenu } = Menu;
 
-export default class SliderBar extends Component {
+class SliderBar extends Component {
 
     state = {
         defaultSelectedKeys: []
@@ -19,6 +19,7 @@ export default class SliderBar extends Component {
     }
 
     getSelectKey() {
+        alert(1)
         const pathname = window.location.pathname;
         let selectKey = 0
         if (pathname === '/') {
@@ -26,6 +27,7 @@ export default class SliderBar extends Component {
         } else {
             selectKey = slideBarConfig.findIndex(item => item.url === pathname)
         }
+        console.log("===selectKey====", selectKey)
         this.setState({
             defaultSelectedKeys: [selectKey + '']
         })
@@ -33,6 +35,7 @@ export default class SliderBar extends Component {
 
     handleClick(key: string) {
         console.log("====key====", key)
+        console.log('===this.prop=====', this.props)
     }
 
     renderSubMenu(item: any) {
@@ -49,7 +52,8 @@ export default class SliderBar extends Component {
                 >
                     {item.children.map((e: any) => (
                         <Menu.Item key={e.url}>
-                            <span>{e.name}</span>
+                            {/* <span>{e.name}</span> */}
+                            <Link onClick={() => this.getSelectKey.bind(this)} to={item.url}>{item.name}</Link>
                         </Menu.Item>
                     ))}
                 </SubMenu>
@@ -58,7 +62,7 @@ export default class SliderBar extends Component {
         return (
             item.hideInMenu ? '' :
                 <Menu.Item key={item.key} icon={<UserOutlined />}>
-                    <Link onClick={() => this.getSelectKey()} to={item.url}>{item.name}</Link>
+                    <Link onClick={() => this.getSelectKey.bind(this)} to={item.url}>{item.name}</Link>
                 </Menu.Item>
         )
     }
@@ -77,3 +81,5 @@ export default class SliderBar extends Component {
         )
     }
 }
+
+export default SliderBar;
