@@ -100,7 +100,8 @@ store.dispatch({ type: 'DECREMENT' });
 ```
 
 > [express + Mock 构建本地接口mock]：
-> 1. 。
+> 1. 使用express(node)[https://expressjs.com/]搭建本地服务。
+> 2. 使用Mockjs模拟数据。
 ```
 react-antd-ts-demo
 ├─ mock
