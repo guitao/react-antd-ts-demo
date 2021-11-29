@@ -98,3 +98,14 @@ store.dispatch({ type: 'DECREMENT' });
   // 2.组件页面接收
   this.props.location.state.id
 ```
+
+> [express + Mock 构建本地接口mock]：
+> 1. 。
+```
+react-antd-ts-demo
+├─ mock
+│  ├─ connect.js
+│  ├─ index.js
+│  └─ user
+│     └─ index.js
+```
