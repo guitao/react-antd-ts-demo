@@ -7,9 +7,9 @@ const slideBarConfig = [
     { name: "路由传参", icon: "inbox", url: "/demo/detail", hideInMenu: true, children: [] },
     { name: "test", icon: "inbox", url: "/test", hideInMenu: false, children: [] },
     {
-        name: "系统管理", icon: "appstore", url: "/system", children: [
-            { name: "账号管理", url: "/system/accountManage" },
-            { name: "角色管理", url: "/system/roleManage" }
+        name: "SubMenu", icon: "appstore", url: "/sub", children: [
+            { name: "SubMenu_1", url: "/sub/sub_1" },
+            { name: "SubMenu_2", url: "/sub/sub_2" }
         ]
     },
 ];

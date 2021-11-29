@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import {
     UserOutlined
@@ -8,37 +8,15 @@ import slideBarConfig from './slideBarConfig'
 
 const { SubMenu } = Menu;
 
-class SliderBar extends Component {
+class SliderBar extends Component<RouteComponentProps> {
 
-    state = {
-        defaultSelectedKeys: []
+    static state = {
     }
 
-    componentWillMount() {
-        this.getSelectKey()
+    public componentWillMount() {
     }
 
-    getSelectKey() {
-        alert(1)
-        const pathname = window.location.pathname;
-        let selectKey = 0
-        if (pathname === '/') {
-            selectKey = 0
-        } else {
-            selectKey = slideBarConfig.findIndex(item => item.url === pathname)
-        }
-        console.log("===selectKey====", selectKey)
-        this.setState({
-            defaultSelectedKeys: [selectKey + '']
-        })
-    }
-
-    handleClick(key: string) {
-        console.log("====key====", key)
-        console.log('===this.prop=====', this.props)
-    }
-
-    renderSubMenu(item: any) {
+    public renderSubMenu(item: any) {
         if (item.children.length > 0) {
             return (
                 <SubMenu
@@ -52,8 +30,7 @@ class SliderBar extends Component {
                 >
                     {item.children.map((e: any) => (
                         <Menu.Item key={e.url}>
-                            {/* <span>{e.name}</span> */}
-                            <Link onClick={() => this.getSelectKey.bind(this)} to={item.url}>{item.name}</Link>
+                            <Link to={e.url}>{e.name}</Link>
                         </Menu.Item>
                     ))}
                 </SubMenu>
@@ -61,18 +38,17 @@ class SliderBar extends Component {
         }
         return (
             item.hideInMenu ? '' :
-                <Menu.Item key={item.key} icon={<UserOutlined />}>
-                    <Link onClick={() => this.getSelectKey.bind(this)} to={item.url}>{item.name}</Link>
+                <Menu.Item key={item.url} icon={<UserOutlined />}>
+                    <Link to={item.url}>{item.name}</Link>
                 </Menu.Item>
         )
     }
 
     render() {
-        const { defaultSelectedKeys } = this.state
-
+        const path = this.props.location.pathname;
         return (
             <div>
-                <Menu onClick={({ key }) => this.handleClick(key)} theme="dark" mode="inline" defaultSelectedKeys={defaultSelectedKeys}>
+                <Menu theme="dark" mode="inline" selectedKeys={[path]}>
                     {
                         slideBarConfig.map(this.renderSubMenu)
                     }
@@ -82,4 +58,4 @@ class SliderBar extends Component {
     }
 }
 
-export default SliderBar;
+export default withRouter(SliderBar);

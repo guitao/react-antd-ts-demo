@@ -13,6 +13,8 @@ import Demo from '../pages/hookDemo'
 import DemoDetail from '../pages/hookDemo/detail'
 import ReduxSagaDemo from '../pages/reduxSagaDemo'
 import Test from '../pages/test'
+import Sub1 from '../pages/subDemo/sub_1'
+import Sub2 from '../pages/subDemo/sub_2'
 
 const { Header, Sider, Content } = Layout;
 
@@ -58,6 +60,8 @@ class Container extends React.Component {
                                 <Route path="/detail" component={DemoDetail} />
                                 <Route path="/redux_saga_demo" component={ReduxSagaDemo} />
                                 <Route path="/test" component={Test} />
+                                <Route path="/sub/sub_1" component={Sub1} />
+                                <Route path="/sub/sub_2" component={Sub2} />
 
                             </Switch>
                         </Content>
